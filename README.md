@@ -8,4 +8,4 @@
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Robleisi/RS_DQR/main/Robleisi_DQR_release.lua?t=" .. tostring(tick())))()
 ```
 
-跑起来后 F9 应先看到：`[DQR] build 2026-09-05u loaded`
+跑起来后 F9 应先看到：`[DQR] build 2026-09-05v loaded`

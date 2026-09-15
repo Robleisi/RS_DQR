@@ -1,18 +1,18 @@
 -- DQR release loader (plain). Prefer jsDelivr; pin commit so CDN won't serve stale @main.
--- Current release stamp: 2026-09-15p
+-- Current release stamp: 2026-09-15q
 -- Integrity: expected values below are baked in by the release pipeline at pin
 -- time. Every downloaded source is verified BEFORE it is executed: exact length,
 -- head/tail byte match, plus two independent 32-bit rolling checksums. A mirror
 -- whose content does not match is skipped, so a corrupted mirror can never run.
 -- NOTE: strictly Lua 5.1 syntax (no Luau bitwise operators), so this compiles
 -- on every executor core, including 5.1-only ones.
-local stamp = "2026-09-15p"
-local commit = "2089ff3"
-local expectedLen = 857991
-local expectedFnv = "4FB147C1"
-local expectedDjb = "AD01487F"
-local expectedHead = "return(function(...)local KR={\"\\080\\078\\053\\061\";\"\\088\\080\\051\\0"
-local expectedTail = "ATED),tostring(SCRIPT_CHANGELOG or lR(-738598+733618)))end)(...)"
+local stamp = "2026-09-15q"
+local commit = "f475929"
+local expectedLen = 862102
+local expectedFnv = "68719F8D"
+local expectedDjb = "A7AB0BDB"
+local expectedHead = "return(function(...)local XE={\"\\079\\119\\107\\061\";\"\\072\\108\\081\\076\\121"
+local expectedTail = "ATED),tostring(SCRIPT_CHANGELOG or cE(-540731+590943)))end)(...)"
 local bust = tostring(os.time()) .. "-" .. tostring(math.random(1, 1000000000))
 
 -- ---- kill switch: remote minimum-stamp manifest (@main; purged on each release) ----

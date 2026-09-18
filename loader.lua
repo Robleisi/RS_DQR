@@ -1,19 +1,41 @@
 -- DQR release loader (plain). Prefer jsDelivr; pin commit so CDN won't serve stale @main.
--- Current release stamp: 2026-09-18a
+-- Current release stamp: 2026-09-18b
 -- Integrity: expected values below are baked in by the release pipeline at pin
 -- time. Every downloaded source is verified BEFORE it is executed: exact length,
 -- head/tail byte match, plus two independent 32-bit rolling checksums. A mirror
 -- whose content does not match is skipped, so a corrupted mirror can never run.
 -- NOTE: strictly Lua 5.1 syntax (no Luau bitwise operators), so this compiles
 -- on every executor core, including 5.1-only ones.
-local stamp = "2026-09-18a"
-local commit = "b86e489"
-local expectedLen = 1655056
-local expectedFnv = "C3142BA0"
-local expectedDjb = "9FA8A13A"
-local expectedHead = "return(function(...)local js={\"\\078\\103\\048\\050\",\"\\079\\051\\099\\089\\101"
-local expectedTail = "G or Ss[Zs(zs(944893+-932671),848634+19480417817572)]))end)(...)"
+local stamp = "2026-09-18b"
+local commit = "db49629"
+local expectedLen = 1657067
+local expectedFnv = "3B1977EE"
+local expectedDjb = "265056CE"
+local expectedHead = "return(function(...)local eu={\"\\100\\050\\100\\104\\111\\115\\049\\077\\103\\08"
+local expectedTail = "OG or su[Xu(Ou(-13649-12128),972839257562-(-523696))]))end)(...)"
 local bust = tostring(os.time()) .. "-" .. tostring(math.random(1, 1000000000))
+
+-- ---- game guard: only classic Dungeon Quest + Reborn ----
+-- game.GameId = UniverseId. Bypass: getgenv().DQR_SKIP_GAME_GUARD = true
+do
+	local skip = false
+	pcall(function()
+		if type(getgenv) == "function" and getgenv().DQR_SKIP_GAME_GUARD == true then
+			skip = true
+		end
+	end)
+	if not skip then
+		local allowed = {
+			[848145103] = true,  -- Dungeon Quest (classic)
+			[9931749389] = true, -- Dungeon Quest Reborn
+		}
+		if not allowed[game.GameId] then
+			warn(("[DQR] loader abort: not DQ/Reborn (GameId=%s PlaceId=%s)"):format(
+				tostring(game.GameId), tostring(game.PlaceId)))
+			return
+		end
+	end
+end
 
 -- ---- kill switch: remote minimum-stamp manifest (@main; purged on each release) ----
 -- Raise minStamp in manifest.lua to instantly disable every older loader in the wild.

@@ -1,22 +1,44 @@
 -- DQR release loader (plain). Prefer jsDelivr; pin commit so CDN won't serve stale @main.
--- Current release stamp: 2026-09-18d
+-- Routes by game.GameId: classic DQ -> Robleisi_DQ_classic_release.lua,
+-- Reborn -> Robleisi_DQR_release.lua. One user-facing URL for both.
 -- Integrity: expected values below are baked in by the release pipeline at pin
 -- time. Every downloaded source is verified BEFORE it is executed: exact length,
 -- head/tail byte match, plus two independent 32-bit rolling checksums. A mirror
 -- whose content does not match is skipped, so a corrupted mirror can never run.
 -- NOTE: strictly Lua 5.1 syntax (no Luau bitwise operators), so this compiles
 -- on every executor core, including 5.1-only ones.
-local stamp = "2026-09-18d"
-local commit = "3c292ef"
-local expectedLen = 1672569
-local expectedFnv = "0B259158"
-local expectedDjb = "F0B15084"
-local expectedHead = "return(function(...)local xu={\"\\043\\065\\110\\086\\084\\048\\081\\115\\077\\06"
-local expectedTail = "or Mu[Ru(su(-465902+419214),2536255168525-(-420141))]))end)(...)"
+
 local bust = tostring(os.time()) .. "-" .. tostring(math.random(1, 1000000000))
 
--- ---- game guard: only classic Dungeon Quest + Reborn ----
--- game.GameId = UniverseId. Bypass: getgenv().DQR_SKIP_GAME_GUARD = true
+-- ---- profiles (reborn pin unchanged; classic is a separate release file) ----
+local profiles = {
+	reborn = {
+		kind = "reborn",
+		stamp = "2026-09-18d",
+		commit = "3c292ef",
+		file = "Robleisi_DQR_release.lua",
+		expectedLen = 1672569,
+		expectedFnv = "0B259158",
+		expectedDjb = "F0B15084",
+		expectedHead = "return(function(...)local xu={\"\\043\\065\\110\\086\\084\\048\\081\\115\\077\\06",
+		expectedTail = "or Mu[Ru(su(-465902+419214),2536255168525-(-420141))]))end)(...)",
+	},
+	classic = {
+		kind = "classic",
+		stamp = "2026-09-18a",
+		commit = "PLACEHOLDER", -- filled after classic release commit
+		file = "Robleisi_DQ_classic_release.lua",
+		expectedLen = 1674134,
+		expectedFnv = "4B4952CF",
+		expectedDjb = "F109046D",
+		expectedHead = "return(function(...)local Gh={\"\\118\\084\\099\\087\",\"\\098\\100\\053\\050\";\"\\",
+		expectedTail = " or Qh[qh(ih(-111971+105918),-967998+16655318680021)]))end)(...)",
+	},
+}
+
+-- ---- pick profile by UniverseId (game.GameId) ----
+-- Bypass: getgenv().DQR_SKIP_GAME_GUARD = true (defaults to reborn profile)
+local profile
 do
 	local skip = false
 	pcall(function()
@@ -24,18 +46,29 @@ do
 			skip = true
 		end
 	end)
-	if not skip then
-		local allowed = {
-			[848145103] = true,  -- Dungeon Quest (classic)
-			[9931749389] = true, -- Dungeon Quest Reborn
-		}
-		if not allowed[game.GameId] then
-			warn(("[DQR] loader abort: not DQ/Reborn (GameId=%s PlaceId=%s)"):format(
-				tostring(game.GameId), tostring(game.PlaceId)))
-			return
-		end
+	local uid = game.GameId
+	if uid == 848145103 then
+		profile = profiles.classic
+	elseif uid == 9931749389 then
+		profile = profiles.reborn
+	elseif skip then
+		profile = profiles.reborn
+		warn("[DQR] loader guard skipped; defaulting to reborn profile")
+	else
+		warn(("[DQR] loader abort: not DQ/Reborn (GameId=%s PlaceId=%s)"):format(
+			tostring(uid), tostring(game.PlaceId)))
+		return
 	end
 end
+
+local stamp = profile.stamp
+local commit = profile.commit
+local expectedLen = profile.expectedLen
+local expectedFnv = profile.expectedFnv
+local expectedDjb = profile.expectedDjb
+local expectedHead = profile.expectedHead
+local expectedTail = profile.expectedTail
+local releaseFile = profile.file
 
 -- ---- kill switch: remote minimum-stamp manifest (@main; purged on each release) ----
 -- Raise minStamp in manifest.lua to instantly disable every older loader in the wild.
@@ -59,7 +92,7 @@ do
 		end
 	end
 	if minStamp and stamp < minStamp then
-		error("[DQR] loader " .. stamp .. " disabled: minimum required stamp is " .. minStamp .. ", please use the latest release URL", 0)
+		error("[DQR] loader " .. stamp .. " (" .. profile.kind .. ") disabled: minimum required stamp is " .. minStamp .. ", please use the latest release URL", 0)
 	end
 end
 
@@ -129,14 +162,14 @@ local function verify(src)
 	return true
 end
 
-warn("[DQR] loader " .. stamp .. " @" .. commit .. " fetching release...")
+warn("[DQR] loader " .. stamp .. " @" .. commit .. " kind=" .. profile.kind .. " fetching " .. releaseFile .. "...")
 local src, lastErr
 local urls = {
-	"https://cdn.jsdelivr.net/gh/Robleisi/RS_DQR@" .. commit .. "/Robleisi_DQR_release.lua?t=" .. bust,
-	"https://fastly.jsdelivr.net/gh/Robleisi/RS_DQR@" .. commit .. "/Robleisi_DQR_release.lua?t=" .. bust,
-	"https://gcore.jsdelivr.net/gh/Robleisi/RS_DQR@" .. commit .. "/Robleisi_DQR_release.lua?t=" .. bust,
-	"https://testingcf.jsdelivr.net/gh/Robleisi/RS_DQR@" .. commit .. "/Robleisi_DQR_release.lua?t=" .. bust,
-	"https://raw.githubusercontent.com/Robleisi/RS_DQR/" .. commit .. "/Robleisi_DQR_release.lua?t=" .. bust,
+	"https://cdn.jsdelivr.net/gh/Robleisi/RS_DQR@" .. commit .. "/" .. releaseFile .. "?t=" .. bust,
+	"https://fastly.jsdelivr.net/gh/Robleisi/RS_DQR@" .. commit .. "/" .. releaseFile .. "?t=" .. bust,
+	"https://gcore.jsdelivr.net/gh/Robleisi/RS_DQR@" .. commit .. "/" .. releaseFile .. "?t=" .. bust,
+	"https://testingcf.jsdelivr.net/gh/Robleisi/RS_DQR@" .. commit .. "/" .. releaseFile .. "?t=" .. bust,
+	"https://raw.githubusercontent.com/Robleisi/RS_DQR/" .. commit .. "/" .. releaseFile .. "?t=" .. bust,
 }
 for i = 1, #urls do
 	local ok, body = pcall(function()

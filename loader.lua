@@ -14,14 +14,14 @@ local bust = tostring(os.time()) .. "-" .. tostring(math.random(1, 1000000000))
 local profiles = {
 	reborn = {
 		kind = "reborn",
-		stamp = "2026-09-18d",
-		commit = "3c292ef",
+		stamp = "2026-09-18e",
+		commit = "4e41372",
 		file = "Robleisi_DQR_release.lua",
-		expectedLen = 1672569,
-		expectedFnv = "0B259158",
-		expectedDjb = "F0B15084",
-		expectedHead = "return(function(...)local xu={\"\\043\\065\\110\\086\\084\\048\\081\\115\\077\\06",
-		expectedTail = "or Mu[Ru(su(-465902+419214),2536255168525-(-420141))]))end)(...)",
+		expectedLen = 1676008,
+		expectedFnv = "36CE96EB",
+		expectedDjb = "16A9E789",
+		expectedHead = "return(function(...)local Je={\"\\050\\088\\118\\120\\070\\103\\067\\118\\055\\08",
+		expectedTail = "G or he[Re(ve(689845+-712969),-415661+6834575700106)]))end)(...)",
 	},
 	classic = {
 		kind = "classic",

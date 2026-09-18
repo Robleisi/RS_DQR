@@ -1,18 +1,18 @@
 -- DQR release loader (plain). Prefer jsDelivr; pin commit so CDN won't serve stale @main.
--- Current release stamp: 2026-09-18c
+-- Current release stamp: 2026-09-18d
 -- Integrity: expected values below are baked in by the release pipeline at pin
 -- time. Every downloaded source is verified BEFORE it is executed: exact length,
 -- head/tail byte match, plus two independent 32-bit rolling checksums. A mirror
 -- whose content does not match is skipped, so a corrupted mirror can never run.
 -- NOTE: strictly Lua 5.1 syntax (no Luau bitwise operators), so this compiles
 -- on every executor core, including 5.1-only ones.
-local stamp = "2026-09-18c"
-local commit = "47a1881"
-local expectedLen = 1671529
-local expectedFnv = "BDC5EFF7"
-local expectedDjb = "75B90A25"
-local expectedHead = "return(function(...)local b2={\"\\051\\089\\102\\077\";\"\\109\\116\\116\\111\\119"
-local expectedTail = " F2[w2(g2(-307273-(-321130)),-972222+33076553534994)]))end)(...)"
+local stamp = "2026-09-18d"
+local commit = "3c292ef"
+local expectedLen = 1672569
+local expectedFnv = "0B259158"
+local expectedDjb = "F0B15084"
+local expectedHead = "return(function(...)local xu={\"\\043\\065\\110\\086\\084\\048\\081\\115\\077\\06"
+local expectedTail = "or Mu[Ru(su(-465902+419214),2536255168525-(-420141))]))end)(...)"
 local bust = tostring(os.time()) .. "-" .. tostring(math.random(1, 1000000000))
 
 -- ---- game guard: only classic Dungeon Quest + Reborn ----

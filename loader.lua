@@ -25,14 +25,14 @@ local profiles = {
 	},
 	classic = {
 		kind = "classic",
-		stamp = "2026-09-19c",
-		commit = "8b2e3b0",
+		stamp = "2026-09-19d",
+		commit = "463748c",
 		file = "Robleisi_DQ_classic_release.lua",
-		expectedLen = 1759588,
-		expectedFnv = "26B05D18",
-		expectedDjb = "883D42E0",
-		expectedHead = "return(function(...)local HZ={\"\\087\\052\\119\\118\\043\\101\\052\\103\\066\\09",
-		expectedTail = "r pZ[JZ(cZ(871099+-877866),33770210681074-(-268776))]))end)(...)",
+		expectedLen = 1759292,
+		expectedFnv = "79895D33",
+		expectedDjb = "93C7B731",
+		expectedHead = "return(function(...)local KL={\"\\119\\088\\114\\085\\066\\057\\085\\086\\105\\10",
+		expectedTail = "or PL[aL(AL(-774329-(-715190)),891452+8651401004349)]))end)(...)",
 	},
 }
 

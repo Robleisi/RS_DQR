@@ -25,14 +25,14 @@ local profiles = {
 	},
 	classic = {
 		kind = "classic",
-		stamp = "2026-09-25e",
-		commit = "f302ad5",
+		stamp = "2026-09-25f",
+		commit = "12fd411",
 		file = "Robleisi_DQ_classic_release.lua",
-		expectedLen = 1122263,
-		expectedFnv = "5E4E0D84",
-		expectedDjb = "FE90FB0A",
-		expectedHead = "local t7,n7 do local X=math.floor local C=math.random local W=table.re",
-		expectedTail = "PDATED),tostring(SCRIPT_CHANGELOG or t7[n7(\"\",16942015528354)]))",
+		expectedLen = 1126539,
+		expectedFnv = "D0F0533A",
+		expectedDjb = "051B9652",
+		expectedHead = "local u8,G8 do local h=math.floor local F=math.random local v=table.re",
+		expectedTail = "UPDATED),tostring(SCRIPT_CHANGELOG or G8[u8(\"\",5521348957206)]))",
 	},
 }
 

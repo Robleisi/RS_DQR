@@ -15,7 +15,7 @@ loadstring(game:HttpGet("https://cdn.jsdelivr.net/gh/Robleisi/RS_DQR@main/loader
 当前发布戳：
 
 - DQ Reborn：**2026-09-20a**
-- DQ classic：**2026-09-21a**
+- DQ classic：**2026-10-05b**
 - Heavyweight Fishing：**2026-10-22a**
 
 源码位于主仓库 `dev/`（`dev/DQR.lua`、`dev/DQ_classic.lua`、`dev/HWF.lua`），本仓库只存放混淆产物与入口 loader。

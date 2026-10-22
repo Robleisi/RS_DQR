@@ -1,6 +1,7 @@
 -- DQR release loader (plain). Prefer jsDelivr; pin commit so CDN won't serve stale @main.
 -- Routes by game.GameId: classic DQ -> Robleisi_DQ_classic_release.lua,
--- Reborn -> Robleisi_DQR_release.lua. One user-facing URL for both.
+-- Reborn -> Robleisi_DQR_release.lua, Heavyweight Fishing -> Robleisi_HWF_release.lua.
+-- One user-facing URL for all.
 -- Integrity: expected values below are baked in by the release pipeline at pin
 -- time. Every downloaded source is verified BEFORE it is executed: exact length,
 -- head/tail byte match, plus two independent 32-bit rolling checksums. A mirror
@@ -34,6 +35,17 @@ local profiles = {
 		expectedHead = "return(function(...)local k6={\"\\104\\079\\108\\074\",\"\\070\\109\\121\\105\\109",
 		expectedTail = " R6[o6(A6(-83603-(-131236)),8571941869433-(-706486))]))end)(...)",
 	},
+	hwf = {
+		kind = "hwf",
+		stamp = "2026-10-22a",
+		commit = "f3b7d6d",
+		file = "Robleisi_HWF_release.lua",
+		expectedLen = 386583,
+		expectedFnv = "F1A7EA05",
+		expectedDjb = "B368DFED",
+		expectedHead = "return(function(...)local Wh={\"\\075\\085\\099\\107\\087\\080\\061\\061\";\"\\083",
+		expectedTail = "=(a[380905-380780]+(72684-72674))%(-1042600-(-1042624))end)(...)",
+	},
 }
 
 -- ---- pick profile by UniverseId (game.GameId) ----
@@ -51,11 +63,13 @@ do
 		profile = profiles.classic
 	elseif uid == 9931749389 then
 		profile = profiles.reborn
+	elseif uid == 8342498724 then
+		profile = profiles.hwf
 	elseif skip then
 		profile = profiles.reborn
 		warn("[DQR] loader guard skipped; defaulting to reborn profile")
 	else
-		warn(("[DQR] loader abort: not DQ/Reborn (GameId=%s PlaceId=%s)"):format(
+		warn(("[DQR] loader abort: unsupported game (GameId=%s PlaceId=%s)"):format(
 			tostring(uid), tostring(game.PlaceId)))
 		return
 	end

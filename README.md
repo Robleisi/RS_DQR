@@ -1,15 +1,21 @@
 # RS_DQR
 
-当前发布戳：**2026-09-07a**
+统一入口（按 `game.GameId` 自动选择对应发布产物）：
 
 ```lua
-loadstring(game:HttpGet("https://cdn.jsdelivr.net/gh/Robleisi/RS_DQR@a6bab30/loader.lua"))()
+loadstring(game:HttpGet("https://cdn.jsdelivr.net/gh/Robleisi/RS_DQR@main/loader.lua"))()
 ```
 
-或直接（锁定发布提交 85915a7）：
+| 游戏 | GameId | 发布文件 |
+|---|---|---|
+| DQ classic | 848145103 | `Robleisi_DQ_classic_release.lua` |
+| DQ Reborn | 9931749389 | `Robleisi_DQR_release.lua` |
+| Heavyweight Fishing | 8342498724 | `Robleisi_HWF_release.lua` |
 
-```lua
-loadstring(game:HttpGet("https://cdn.jsdelivr.net/gh/Robleisi/RS_DQR@85915a7/Robleisi_DQR_release.lua"))()
-```
+当前发布戳：
 
-F9：`[DQR] build 2026-09-07a loaded`
+- DQ Reborn：**2026-09-20a**
+- DQ classic：**2026-09-21a**
+- Heavyweight Fishing：**2026-10-22a**
+
+源码位于主仓库 `dev/`（`dev/DQR.lua`、`dev/DQ_classic.lua`、`dev/HWF.lua`），本仓库只存放混淆产物与入口 loader。

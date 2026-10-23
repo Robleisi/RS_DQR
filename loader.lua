@@ -37,14 +37,14 @@ local profiles = {
 	},
 	hwf = {
 		kind = "hwf",
-		stamp = "2026-10-23v",
-		commit = "879a106",
+		stamp = "2026-10-23w",
+		commit = "3164fe8",
 		file = "Robleisi_HWF_release.lua",
-		expectedLen = 525321,
-		expectedFnv = "9AD8894D",
-		expectedDjb = "F2D68085",
-		expectedHead = "return(function(...)local yf={\"\\067\\067\\084\\087\",\"\\053\\085\\105\\103\\081",
-		expectedTail = ")]=(g[181539-181414]+(-158629+158639))%(938365+-938341)end)(...)",
+		expectedLen = 525569,
+		expectedFnv = "497966EB",
+		expectedDjb = "BB236063",
+		expectedHead = "return(function(...)local LD={\"\\066\\052\\073\\108\\106\\075\\084\\079\\105\\05",
+		expectedTail = "=(U[232999+-232874]+(1047434-1047424))%(743095+-743071)end)(...)",
 	},
 }
 

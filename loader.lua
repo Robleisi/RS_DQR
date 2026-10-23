@@ -49,14 +49,14 @@ local profiles = {
 	},
 	universal = {
 		kind = "universal",
-		stamp = "2026-10-25a",
-		commit = "c1a77ab",
+		stamp = "2026-10-25b",
+		commit = "954bbae",
 		file = "Robleisi_Universal_release.lua",
-		expectedLen = 104916,
-		expectedFnv = "E1120367",
-		expectedDjb = "9371D9ED",
-		expectedHead = "return(function(...)local E={\"\\068\\083\\117\\065\\110\\052\\067\\109\\072\\048",
-		expectedTail = "843450))))print(m(-1014143+1036482)..UNIVERSAL_VERSION)end)(...)",
+		expectedLen = 104861,
+		expectedFnv = "96A0DACC",
+		expectedDjb = "76D16512",
+		expectedHead = "return(function(...)local B={\"\\122\\103\\066\\111\\116\\069\\072\\097\\100\\069",
+		expectedTail = "(-230311))))print(y(147173+-149379)..UNIVERSAL_VERSION)end)(...)",
 	},
 }
 

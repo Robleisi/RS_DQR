@@ -1,6 +1,7 @@
 -- DQR release loader (plain). Prefer jsDelivr; pin commit so CDN won't serve stale @main.
 -- Routes by game.GameId: classic DQ -> Robleisi_DQ_classic_release.lua,
 -- Reborn -> Robleisi_DQR_release.lua, Heavyweight Fishing -> Robleisi_HWF_release.lua.
+-- Any other game -> Robleisi_Universal_release.lua (universal fallback profile).
 -- One user-facing URL for all.
 -- Integrity: expected values below are baked in by the release pipeline at pin
 -- time. Every downloaded source is verified BEFORE it is executed: exact length,
@@ -46,6 +47,17 @@ local profiles = {
 		expectedHead = "return(function(...)local Zd={\"\\084\\050\\072\\054\\109\\116\\084\\070\\109\\11",
 		expectedTail = "97385+-297260]+(-314464-(-314474)))%(-769312-(-769336))end)(...)",
 	},
+	universal = {
+		kind = "universal",
+		stamp = "2026-10-25a",
+		commit = "c1a77ab",
+		file = "Robleisi_Universal_release.lua",
+		expectedLen = 104916,
+		expectedFnv = "E1120367",
+		expectedDjb = "9371D9ED",
+		expectedHead = "return(function(...)local E={\"\\068\\083\\117\\065\\110\\052\\067\\109\\072\\048",
+		expectedTail = "843450))))print(m(-1014143+1036482)..UNIVERSAL_VERSION)end)(...)",
+	},
 }
 
 -- ---- pick profile by UniverseId (game.GameId) ----
@@ -69,9 +81,9 @@ do
 		profile = profiles.reborn
 		warn("[DQR] loader guard skipped; defaulting to reborn profile")
 	else
-		warn(("[DQR] loader abort: unsupported game (GameId=%s PlaceId=%s)"):format(
+		profile = profiles.universal
+		warn(("[DQR] loader: unsupported game (GameId=%s PlaceId=%s) -> universal profile"):format(
 			tostring(uid), tostring(game.PlaceId)))
-		return
 	end
 end
 

@@ -38,13 +38,13 @@ local profiles = {
 	hwf = {
 		kind = "hwf",
 		stamp = "2026-10-23l",
-		commit = "0c5b683",
+		commit = "acee3f9",
 		file = "Robleisi_HWF_release.lua",
-		expectedLen = 503133,
-		expectedFnv = "FAAE2722",
-		expectedDjb = "CA812A6C",
-		expectedHead = "return(function(...)local Ar={\"\\080\\111\\067\\103\\097\\108\\070\\072\\080\\10",
-		expectedTail = "6]=(T[203366+-203241]+(503482-503472))%(656372+-656348)end)(...)",
+		expectedLen = 502064,
+		expectedFnv = "F9239C11",
+		expectedDjb = "3C564A63",
+		expectedHead = "return(function(...)local lr={\"\\115\\088\\081\\079\\115\\071\\054\\103\\108\\04",
+		expectedTail = ")]=(W[820598-820473]+(-894972+894982))%(785912+-785888)end)(...)",
 	},
 }
 

@@ -1,6 +1,7 @@
 -- DQR release loader (plain). Prefer jsDelivr; pin commit so CDN won't serve stale @main.
 -- Routes by game.GameId: classic DQ -> Robleisi_DQ_classic_release.lua,
--- Reborn -> Robleisi_DQR_release.lua, Heavyweight Fishing -> Robleisi_HWF_release.lua.
+-- Reborn -> Robleisi_DQR_release.lua, Heavyweight Fishing -> Robleisi_HWF_release.lua,
+-- Throw Food For Animals -> Robleisi_ThrowFood_release.lua.
 -- Any other game -> Robleisi_Universal_release.lua (universal fallback profile).
 -- One user-facing URL for all.
 -- Integrity: expected values below are baked in by the release pipeline at pin
@@ -58,6 +59,17 @@ local profiles = {
 		expectedHead = "return(function(...)local o={\"\\081\\083\\121\\111\\086\\109\\052\\104\\088\\083",
 		expectedTail = "252-193830)))print(K(188373-131876)..UNIVERSAL_VERSION)end)(...)",
 	},
+	throwfood = {
+		kind = "throwfood",
+		stamp = "2026-11-02a",
+		commit = "372999c",
+		file = "Robleisi_ThrowFood_release.lua",
+		expectedLen = 164835,
+		expectedFnv = "2190ABDF",
+		expectedDjb = "901FB3CF",
+		expectedHead = "local X,B do local z=math.floor local P=math.random local d=table.remo",
+		expectedTail = "197\\079\\127\\087\\150\\139\\095\",6883968915723)]..THROWFOOD_VERSION)",
+	},
 }
 
 -- ---- pick profile by UniverseId (game.GameId) ----
@@ -77,6 +89,8 @@ do
 		profile = profiles.reborn
 	elseif uid == 8342498724 then
 		profile = profiles.hwf
+	elseif uid == 10766972131 or game.PlaceId == 120219252362013 then
+		profile = profiles.throwfood
 	elseif skip then
 		profile = profiles.reborn
 		warn("[DQR] loader guard skipped; defaulting to reborn profile")

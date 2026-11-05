@@ -1,7 +1,8 @@
 -- DQR release loader (plain). Prefer jsDelivr; pin commit so CDN won't serve stale @main.
 -- Routes by game.GameId: classic DQ -> Robleisi_DQ_classic_release.lua,
 -- Reborn -> Robleisi_DQR_release.lua, Heavyweight Fishing -> Robleisi_HWF_release.lua,
--- Throw Food For Animals -> Robleisi_ThrowFood_release.lua.
+-- Throw Food For Animals -> Robleisi_ThrowFood_release.lua,
+-- The Forge -> Robleisi_TheForge_release.lua.
 -- Any other game -> Robleisi_Universal_release.lua (universal fallback profile).
 -- One user-facing URL for all.
 -- Integrity: expected values below are baked in by the release pipeline at pin
@@ -39,36 +40,47 @@ local profiles = {
 	},
 	hwf = {
 		kind = "hwf",
-		stamp = "2026-10-31a",
-		commit = "43d8a92",
+		stamp = "2026-11-05a",
+		commit = "751f6aa",
 		file = "Robleisi_HWF_release.lua",
-		expectedLen = 559612,
-		expectedFnv = "BF038250",
-		expectedDjb = "D0F1F236",
-		expectedHead = "return(function(...)local Di={\"\\115\\106\\069\\056\\115\\054\\111\\122\",\"\\055",
-		expectedTail = "=(K[-211242-(-211367)]+(646270-646260))%(278401-278377)end)(...)",
+		expectedLen = 561991,
+		expectedFnv = "BD576992",
+		expectedDjb = "265BBCCC",
+		expectedHead = "return(function(...)local kf={\"\\103\\075\\099\\121\\108\\075\\108\\111\\043\\05",
+		expectedTail = "1]=(r[694774+-694649]+(529530-529520))%(966334+-966310)end)(...)",
 	},
 	universal = {
 		kind = "universal",
-		stamp = "2026-10-31a",
-		commit = "43d8a92",
+		stamp = "2026-11-05a",
+		commit = "751f6aa",
 		file = "Robleisi_Universal_release.lua",
-		expectedLen = 104856,
-		expectedFnv = "18C7A7F2",
-		expectedDjb = "33672C68",
-		expectedHead = "return(function(...)local o={\"\\081\\083\\121\\111\\086\\109\\052\\104\\088\\083",
-		expectedTail = "252-193830)))print(K(188373-131876)..UNIVERSAL_VERSION)end)(...)",
+		expectedLen = 107252,
+		expectedFnv = "EC5F2E31",
+		expectedDjb = "683F188F",
+		expectedHead = "return(function(...)local s={\"\\108\\110\\074\\043\\084\\090\\106\\098\\084\\108",
+		expectedTail = "035+69764)))print(R(-564850+538798)..UNIVERSAL_VERSION)end)(...)",
 	},
 	throwfood = {
 		kind = "throwfood",
-		stamp = "2026-11-02a",
-		commit = "372999c",
+		stamp = "2026-11-05a",
+		commit = "751f6aa",
 		file = "Robleisi_ThrowFood_release.lua",
-		expectedLen = 164835,
-		expectedFnv = "2190ABDF",
-		expectedDjb = "901FB3CF",
-		expectedHead = "local X,B do local z=math.floor local P=math.random local d=table.remo",
-		expectedTail = "197\\079\\127\\087\\150\\139\\095\",6883968915723)]..THROWFOOD_VERSION)",
+		expectedLen = 144653,
+		expectedFnv = "AC144229",
+		expectedDjb = "F0E53629",
+		expectedHead = "return(function(...)local x={\"\\056\\082\\117\\118\\069\\087\\050\\050\\069\\082",
+		expectedTail = "56-121892)))print(r(-280041+257462)..THROWFOOD_VERSION)end)(...)",
+	},
+	theforge = {
+		kind = "theforge",
+		stamp = "2026-11-05a",
+		commit = "751f6aa",
+		file = "Robleisi_TheForge_release.lua",
+		expectedLen = 93199,
+		expectedFnv = "5A445E9E",
+		expectedDjb = "1703852E",
+		expectedHead = "return(function(...)local T={\"\\104\\119\\090\\088\\089\\119\\077\\071\\090\\119",
+		expectedTail = "]=a,[u(-144804+132349)]=J,[u(860032-872635)]=j}end end)end)(...)",
 	},
 }
 
@@ -91,6 +103,8 @@ do
 		profile = profiles.hwf
 	elseif uid == 10766972131 or game.PlaceId == 120219252362013 then
 		profile = profiles.throwfood
+	elseif uid == 7671049560 then
+		profile = profiles.theforge
 	elseif skip then
 		profile = profiles.reborn
 		warn("[DQR] loader guard skipped; defaulting to reborn profile")

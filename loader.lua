@@ -2,7 +2,8 @@
 -- Routes by game.GameId: classic DQ -> Robleisi_DQ_classic_release.lua,
 -- Reborn -> Robleisi_DQR_release.lua, Heavyweight Fishing -> Robleisi_HWF_release.lua,
 -- Throw Food For Animals -> Robleisi_ThrowFood_release.lua,
--- The Forge -> Robleisi_TheForge_release.lua.
+-- The Forge -> Robleisi_TheForge_release.lua,
+-- Terracraft -> Robleisi_Terracraft_release.lua.
 -- Any other game -> Robleisi_Universal_release.lua (universal fallback profile).
 -- One user-facing URL for all.
 -- Integrity: expected values below are baked in by the release pipeline at pin
@@ -82,6 +83,17 @@ local profiles = {
 		expectedHead = "local Q,q do local y=math.floor local x=math.random local c=table.remo",
 		expectedTail = "09)]]=U;[q[Q(\"\\208\\133\\061\\213\\111\",34966395846452)]]=M}end end)",
 	},
+	terracraft = {
+		kind = "terracraft",
+		stamp = "2026-11-26d",
+		commit = "ca3acc7",
+		file = "Robleisi_Terracraft_release.lua",
+		expectedLen = 80892,
+		expectedFnv = "08607254",
+		expectedDjb = "74088ADC",
+		expectedHead = "return(function(...)local v={\"\\074\\097\\077\\119\\074\\074\\112\\082\\073\\110",
+		expectedTail = "754954-(-766776))..tostring(game[t(-823034+835049)]))))end)(...)",
+	},
 }
 
 -- ---- pick profile by UniverseId (game.GameId) ----
@@ -105,6 +117,8 @@ do
 		profile = profiles.throwfood
 	elseif uid == 7671049560 then
 		profile = profiles.theforge
+	elseif uid == 10767792395 then
+		profile = profiles.terracraft
 	elseif skip then
 		profile = profiles.reborn
 		warn("[DQR] loader guard skipped; defaulting to reborn profile")

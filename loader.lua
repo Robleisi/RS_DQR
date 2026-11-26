@@ -85,14 +85,14 @@ local profiles = {
 	},
 	terracraft = {
 		kind = "terracraft",
-		stamp = "2026-11-26d",
-		commit = "ca3acc7",
+		stamp = "2026-11-26e",
+		commit = "b67aef0",
 		file = "Robleisi_Terracraft_release.lua",
-		expectedLen = 80892,
-		expectedFnv = "08607254",
-		expectedDjb = "74088ADC",
-		expectedHead = "return(function(...)local v={\"\\074\\097\\077\\119\\074\\074\\112\\082\\073\\110",
-		expectedTail = "754954-(-766776))..tostring(game[t(-823034+835049)]))))end)(...)",
+		expectedLen = 83130,
+		expectedFnv = "BD80F61E",
+		expectedDjb = "B7C28076",
+		expectedHead = "return(function(...)local V={\"\\086\\081\\110\\068\\109\\102\\061\\061\";\"\\113\\",
+		expectedTail = "ON..(U(653839-610675)..tostring(game[U(37281+5943)]))))end)(...)",
 	},
 }
 

@@ -22,7 +22,7 @@ loadstring(game:HttpGet("https://cdn.jsdelivr.net/gh/Robleisi/RS_DQR@main/loader
 - Heavyweight Fishing：**2026-11-05a**
 - Throw Food For Animals：**2026-11-05a**
 - The Forge：**2026-11-05a**
-- Terracraft：**2026-11-26d**
+- Terracraft：**2026-11-26e**
 - Universal（其它游戏通用）：**2026-11-05a**
 
 源码位于主仓库 `dev/`（`dev/DQR.lua`、`dev/DQ_classic.lua`、`dev/HWF.lua`、`dev/Universal.lua`、`dev/ThrowFood.lua`、`dev/TheForge.lua`、`dev/Terracraft.lua`），本仓库只存放混淆产物与入口 loader。

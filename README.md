@@ -13,6 +13,7 @@ loadstring(game:HttpGet("https://cdn.jsdelivr.net/gh/Robleisi/RS_DQR@main/loader
 | Heavyweight Fishing | 8342498724 | `Robleisi_HWF_release.lua` |
 | Throw Food For Animals | 10766972131 | `Robleisi_ThrowFood_release.lua` |
 | The Forge | 7671049560 | `Robleisi_TheForge_release.lua` |
+| Terracraft | 10767792395 | `Robleisi_Terracraft_release.lua` |
 
 当前发布戳：
 
@@ -21,6 +22,7 @@ loadstring(game:HttpGet("https://cdn.jsdelivr.net/gh/Robleisi/RS_DQR@main/loader
 - Heavyweight Fishing：**2026-11-05a**
 - Throw Food For Animals：**2026-11-05a**
 - The Forge：**2026-11-05a**
+- Terracraft：**2026-11-26d**
 - Universal（其它游戏通用）：**2026-11-05a**
 
-源码位于主仓库 `dev/`（`dev/DQR.lua`、`dev/DQ_classic.lua`、`dev/HWF.lua`、`dev/Universal.lua`、`dev/ThrowFood.lua`），本仓库只存放混淆产物与入口 loader。
+源码位于主仓库 `dev/`（`dev/DQR.lua`、`dev/DQ_classic.lua`、`dev/HWF.lua`、`dev/Universal.lua`、`dev/ThrowFood.lua`、`dev/TheForge.lua`、`dev/Terracraft.lua`），本仓库只存放混淆产物与入口 loader。
